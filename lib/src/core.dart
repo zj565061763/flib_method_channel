@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/services.dart';
 
-typedef Future<dynamic> MethodCallHandler(String method, dynamic arguments);
+typedef Future<dynamic> MethodCallHandler(dynamic arguments);
 
 class FMethodChannel {
   static final FMethodChannel global = _FGlobalMethodChannel();
@@ -22,7 +22,7 @@ class FMethodChannel {
 
     final MethodCallHandler handler = _mapCallHandler[method];
     if (handler != null) {
-      handler(method, arguments);
+      handler(arguments);
     }
   }
 
