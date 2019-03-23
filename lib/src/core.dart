@@ -39,6 +39,11 @@ class FMethodChannel {
     _mapCallHandler.remove(method);
   }
 
+  /// 调用某个方法
+  Future<T> invokeMethod<T>(String method, [dynamic arguments]) {
+    return _methodChannel.invokeMethod(method, arguments);
+  }
+
   /// 销毁
   void dispose() {
     _mapCallHandler.clear();
