@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/services.dart';
 
-typedef Future<dynamic> MethodCallHandler(dynamic arguments);
+typedef dynamic MethodCallHandler(dynamic arguments);
 
 class FMethodChannel {
   static final FMethodChannel global = _FGlobalMethodChannel();
@@ -16,14 +16,9 @@ class FMethodChannel {
     _methodChannel.setMethodCallHandler(_onMethodCall);
   }
 
-  Future<dynamic> _onMethodCall(MethodCall call) {
-    final String method = call.method;
-    final dynamic arguments = call.arguments;
-
-    final MethodCallHandler handler = _mapCallHandler[method];
-    if (handler != null) {
-      handler(arguments);
-    }
+  Future<dynamic> _onMethodCall(MethodCall call) async {
+    final MethodCallHandler handler = _mapCallHandler[call.method];
+    return handler == null ? null : handler(call.arguments);
   }
 
   /// 设置某个方法的处理对象
