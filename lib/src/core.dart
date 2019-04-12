@@ -2,13 +2,13 @@ import 'dart:async';
 
 import 'package:flutter/services.dart';
 
-typedef dynamic MethodCallHandler(dynamic arguments);
+typedef dynamic FMethodCallHandler(dynamic arguments);
 
 class FMethodChannel {
   static final FMethodChannel global = _FGlobalMethodChannel();
 
   final MethodChannel _methodChannel;
-  final Map<String, MethodCallHandler> _mapCallHandler = {};
+  final Map<String, FMethodCallHandler> _mapCallHandler = {};
 
   FMethodChannel(String name)
       : assert(name != null && name.isNotEmpty),
@@ -17,21 +17,19 @@ class FMethodChannel {
   }
 
   Future<dynamic> _onMethodCall(MethodCall call) async {
-    final MethodCallHandler handler = _mapCallHandler[call.method];
+    final FMethodCallHandler handler = _mapCallHandler[call.method];
     return handler == null ? null : handler(call.arguments);
   }
 
-  /// 设置某个方法的处理对象
-  void setHandler(String method, MethodCallHandler handler) {
+  /// 监听某个方法触发
+  void listen(String method, FMethodCallHandler handler) {
     assert(method != null && method.isNotEmpty);
-    assert(handler != null);
-    _mapCallHandler[method] = handler;
-  }
 
-  /// 移除某个方法的处理对象
-  void removeHandler(String method) {
-    assert(method != null && method.isNotEmpty);
-    _mapCallHandler.remove(method);
+    if (handler != null) {
+      _mapCallHandler[method] = handler;
+    } else {
+      _mapCallHandler.remove(method);
+    }
   }
 
   /// 调用某个方法
