@@ -4,7 +4,6 @@
 .packages
 .pub/
 *.iml
-build/
-ios/.generated/
-ios/Flutter/Generated.xcconfig
-ios/Runner/GeneratedPluginRegistrant.*
+*.lock
+android
+ios

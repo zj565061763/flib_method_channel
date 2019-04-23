@@ -1,8 +1,8 @@
 name: flib_method_channel
 description: A new Flutter package.
-version: 0.0.1
-author:
-homepage:
+version: 1.0.0
+author: Sunday<565061763@qq.com>
+homepage: https://github.com/zj565061763/flib_method_channel
 
 environment:
   sdk: ">=2.1.0 <3.0.0"

@@ -1,6 +1,6 @@
-# flib_method_channel
+# About
 
-# install
+## install
 ```
   flib_method_channel:
     git:
