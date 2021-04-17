@@ -37,7 +37,7 @@ class FMethodChannel {
   }
 
   /// 调用原生平台方法
-  Future<T?> invokeMethod<T>(String method, [dynamic arguments]) {
+  Future<T?> invoke<T>(String method, [dynamic arguments]) {
     assert(method.isNotEmpty);
     return _methodChannel.invokeMethod(method, arguments);
   }
